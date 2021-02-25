@@ -4,12 +4,11 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ng build --prod",
     "lib:watch": "ng build ngx-translate-debug --watch",
     "lib:build": "ng build --prod ngx-translate-debug",
     "lib:publish": "npm run lib:build && cd dist/ngx-translate-debug && npm publish"
   },
-  "private": true,
   "dependencies": {
     "@angular/common": "~11.2.1",
     "@angular/compiler": "~11.2.1",

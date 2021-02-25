@@ -1,27 +1,70 @@
 # ngx-translate-debug
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.1.
+Here's the [DEMO](https://justerror.github.io/ngx-translate-debug/)
 
-## Development server
+## Install
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+_Make sure you have installed [@ngx-translate](https://github.com/ngx-translate/core) library_
 
-## Code scaffolding
+1. Use yarn (or npm) to install the package
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+```terminal
+npm i ngx-translate-debug
+```
 
-## Build
+2. Add custom parser for `TranslateModule`
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+```typescript
+  import { NgxTranslateDebugParser } from 'ngx-translate-debug';
 
-## Running unit tests
+  @NgModule({
+   // ...
+   imports: [
+     // ...
+     TranslateModule.forRoot({
+      // ...
+      parser: { provide: TranslateParser, useClass: NgxTranslateDebugParser }, // <--- ADD THIS LINE
+    }),
+   ]
+  })
+```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Usage
 
-## Running end-to-end tests
+1. Inject `NgxTranslateDebugService` in constructor
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+```typescript
+    constructor(
+      // ...
+      public translateDebugService: NgxTranslateDebugService // <--- ADD THIS LINE
+    ) {
+     // ...
+    }
+  }
+```
 
-## Further help
+2. Use methods of `NgxTranslateDebugService`
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+```html
+<button type="button" (click)="translateDebugService.toggleDebug()">
+  Toggle debug mode
+</button>
+
+<button type="button" (click)="translateDebugService.enableDebug()">
+  Enable debug mode
+</button>
+
+<button type="button" (click)="translateDebugService.disableDebug()">
+  Disable debug mode
+</button>
+```
+
+3. The library records the last state in `window.localStorage['ngx-translate-debug']`
+
+## Dependencies
+
+[@ngx-translate/core](https://github.com/ngx-translate/core)
+
+## License
+
+[MIT](http://vjpr.mit-license.org)

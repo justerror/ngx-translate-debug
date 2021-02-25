@@ -53,7 +53,7 @@ export class NgxTranslateDebugService {
     this.triggerTranslatesUpdate();
   }
 
-  triggerTranslatesUpdate(): void {
+  private triggerTranslatesUpdate(): void {
     this.translateService.onLangChange.emit({
       lang: this.translateService.currentLang,
       translations: this.translateService.translations,
