@@ -1,0 +1,25 @@
+{
+  "name": "ngx-translate-debug",
+  "version": "0.0.1",
+  "description": "Library for displaying ngx-translate translations keys on the fly",
+  "keywords": [
+    "ngx-translate",
+    "@ngx-translate/core",
+    "debug",
+    "angular",
+    "plugin"
+  ],
+  "license": "MIT",
+  "author": {
+    "name": "Ruslan Tursunov",
+    "email": "justeppop@gmail.com"
+  },
+  "peerDependencies": {
+    "@angular/common": "^11.0.0",
+    "@angular/core": "^11.0.0",
+    "@ngx-translate/core": "^13.0.0"
+  },
+  "dependencies": {
+    "tslib": "^2.0.0"
+  }
+}

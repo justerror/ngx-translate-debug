@@ -1,0 +1,32 @@
+<h1>
+  ngx-translate debug
+  <span [ngStyle]="{'color': translateDebugService.isDebugMode ? 'green' : 'gray'}">
+    {{ translateDebugService?.isDebugMode ? 'enabled' : 'disabled' }}
+  </span>
+</h1>
+
+
+<button type="button"
+        (click)="translateDebugService.toggleDebug()">Toggle debug mode</button>
+
+<h4>Reactive:</h4>
+
+<p>Pipe: {{ 'HELLO' | translate }}</p>
+<p>Pipe with params: {{ 'HELLO_WITH_PARAM' | translate: param }}</p>
+<p>Directive: <span [translate]="'HELLO'"></span></p>
+<p>Directive with params: <span [translate]="'HELLO_WITH_PARAM'"
+        [translateParams]="{value: 'world'}"></span></p>
+<p>InnerHTML: <span [innerHTML]="'HELLO_INNER_HTML' | translate"></span></p>
+
+<p>Dynamic keys:</p>
+<ul *ngFor="let item of testArray">
+  <li>{{ 'TEST_ARRAY.' + item | uppercase | translate }}</li>
+</ul>
+
+<p>From translateService.instant() with async pipe: {{ translateService.instant('HELLO') }}</p>
+<p>From translateService.get() with async pipe: {{ translateService.get('HELLO') | async }}</p>
+
+
+<h4>Not reactive:</h4>
+<p>From translateService.instant() with variable: {{ translateAsync }}</p>
+<p>From translateService.get() with variable: {{ translateInstant }}</p>
