@@ -1,5 +1,7 @@
 # ngx-translate-debug
 
+> Plugin for ngx-translate that helps debug translation keys 🔑
+
 Here's the [DEMO](https://justerror.github.io/ngx-translate-debug/)
 
 ## Install

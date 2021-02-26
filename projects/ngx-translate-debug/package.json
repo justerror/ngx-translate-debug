@@ -1,7 +1,7 @@
 {
   "name": "ngx-translate-debug",
   "version": "0.1.0",
-  "description": "Plugin for debugging translations keys on the fly (plugin for ngx-translate)",
+  "description": "Plugin for ngx-translate that helps debug translation keys",
   "keywords": [
     "ngx-translate",
     "@ngx-translate/core",
