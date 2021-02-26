@@ -1,8 +1,10 @@
 # ngx-translate-debug
 
+[![npm version](https://badge.fury.io/js/ngx-translate-debug.svg)](https://badge.fury.io/js/ngx-translate-debug)
+
 > Plugin for ngx-translate that helps debug translation keys 🔑
 
-Here's the [DEMO](https://justerror.github.io/ngx-translate-debug/)
+Here's the [DEMO](https://justerror.github.io/ngx-translate-debug) or edit on [StackBlitz](https://stackblitz.com/github/justerror/ngx-translate-debug)
 
 ## Install
 
