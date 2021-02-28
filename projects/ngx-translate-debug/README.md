@@ -61,7 +61,23 @@ npm i ngx-translate-debug
 </button>
 ```
 
-3. The library records the last state in `window.localStorage['ngx-translate-debug']`
+3. The plugin records the last state in `window.localStorage['ngx-translate-debug']`. You can change key by providing config in root module
+
+```typescript
+@NgModule({
+  // ...
+  providers: [
+    // ...
+    {
+      provide: NGX_TRANSLATE_DEBUG_CONFIG,
+      useValue: {
+        localStorageKey: 'any-custom-key',
+      },
+    },
+  ],
+})
+export class AppModule {}
+```
 
 ## Dependencies
 

@@ -1,12 +1,20 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable, Optional } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { NgxTranslateDebugParser } from '../public-api';
+import {
+  NgxTranslateDebugConfig,
+  NgxTranslateDebugConfigDefault,
+  NGX_TRANSLATE_DEBUG_CONFIG,
+} from './ngx-translate-debug.config';
 
 @Injectable({
   providedIn: 'root',
 })
 export class NgxTranslateDebugService {
-  private readonly localStorageKey = 'ngx-translate-debug';
+  private readonly config: NgxTranslateDebugConfig = Object.assign(
+    NgxTranslateDebugConfigDefault,
+    this.ngxTranslateDebugConfig || {}
+  );
 
   get parser(): NgxTranslateDebugParser {
     return this.translateService.parser as NgxTranslateDebugParser;
@@ -18,13 +26,18 @@ export class NgxTranslateDebugService {
 
   set isDebugMode(value: boolean) {
     this.parser.debug = value;
-    localStorage.setItem(this.localStorageKey, value ? '1' : '0');
+    localStorage.setItem(this.config.localStorageKey, value ? '1' : '0');
   }
 
-  constructor(private translateService: TranslateService) {
-    +localStorage.getItem(this.localStorageKey)
-      ? this.enableDebug()
-      : this.disableDebug();
+  constructor(
+    @Optional()
+    @Inject(NGX_TRANSLATE_DEBUG_CONFIG)
+    private ngxTranslateDebugConfig: NgxTranslateDebugConfig,
+    private translateService: TranslateService
+  ) {
+    if (+localStorage.getItem(this.config.localStorageKey)) {
+      this.enableDebug();
+    }
   }
 
   enableDebug(): void {
