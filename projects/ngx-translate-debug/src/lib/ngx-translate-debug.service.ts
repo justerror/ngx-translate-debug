@@ -1,4 +1,5 @@
-import { Inject, Injectable, Optional } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { Inject, Injectable, Optional, PLATFORM_ID } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { NgxTranslateDebugParser } from '../public-api';
 import {
@@ -15,6 +16,7 @@ export class NgxTranslateDebugService {
     NgxTranslateDebugConfigDefault,
     this.ngxTranslateDebugConfig || {}
   );
+  private readonly isBrowser = isPlatformBrowser(this.platformId);
 
   get parser(): NgxTranslateDebugParser {
     return this.translateService.parser as NgxTranslateDebugParser;
@@ -26,16 +28,19 @@ export class NgxTranslateDebugService {
 
   set isDebugMode(value: boolean) {
     this.parser.debug = value;
-    localStorage.setItem(this.config.localStorageKey, value ? '1' : '0');
+    if (this.isBrowser) {
+      localStorage.setItem(this.config.localStorageKey, value ? '1' : '0');
+    }
   }
 
   constructor(
     @Optional()
     @Inject(NGX_TRANSLATE_DEBUG_CONFIG)
     private ngxTranslateDebugConfig: NgxTranslateDebugConfig,
+    @Inject(PLATFORM_ID) private platformId: Object,
     private translateService: TranslateService
   ) {
-    if (+localStorage.getItem(this.config.localStorageKey)) {
+    if (this.isBrowser && +localStorage.getItem(this.config.localStorageKey)) {
       this.enableDebug();
     }
   }
