@@ -1,11 +1,16 @@
 {
   "name": "ngx-translate-debug",
-  "version": "0.0.1",
-  "description": "Library for displaying ngx-translate translations keys on the fly",
+  "version": "0.1.3",
+  "description": "Plugin for ngx-translate that helps debug translation keys",
   "keywords": [
     "ngx-translate",
-    "@ngx-translate/core"
+    "@ngx-translate/core",
+    "i18n",
+    "translation",
+    "angular",
+    "debug"
   ],
+  "homepage": "https://justerror.github.io/ngx-translate-debug",
   "license": "MIT",
   "author": {
     "name": "Ruslan Tursunov",
@@ -20,11 +25,14 @@
     "url": "https://github.com/justerror/ngx-translate-debug/issues"
   },
   "peerDependencies": {
-    "@angular/common": "^11.0.0",
-    "@angular/core": "^11.0.0",
-    "@ngx-translate/core": "^13.0.0"
+    "@angular/common": ">=9.0.0",
+    "@angular/core": ">=9.0.0",
+    "@ngx-translate/core": ">=12.0.0"
   },
   "dependencies": {
     "tslib": "^2.0.0"
+  },
+  "engines": {
+    "node": ">=10"
   }
 }

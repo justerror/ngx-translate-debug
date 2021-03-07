@@ -103,7 +103,6 @@
       "projectType": "library",
       "root": "projects/ngx-translate-debug",
       "sourceRoot": "projects/ngx-translate-debug/src",
-      "prefix": "lib",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
@@ -132,9 +131,7 @@
               "projects/ngx-translate-debug/tsconfig.lib.json",
               "projects/ngx-translate-debug/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         }
       }

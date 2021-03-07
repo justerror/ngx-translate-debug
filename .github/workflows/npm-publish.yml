@@ -1,0 +1,37 @@
+name: NPM publish CD workflow
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.release.target_commitish }}
+      - name: Use Node.js 12
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12
+      - run: npm ci
+      - run: git config --global user.name "GitHub CD bot"
+      - run: git config --global user.email "justeppop@gmail.com"
+      - name: Create .git folder inside package folder
+        working-directory: projects/ngx-translate-debug
+        run: mkdir .git
+      - name: Set package version
+        working-directory: projects/ngx-translate-debug
+        run: npm version ${{ github.event.release.tag_name }}
+      - run: npm run lib:build
+      - run: npm config set '//registry.npmjs.org/:_authToken' "${{ secrets.NPM_TOKEN }}"
+      - name: Publish to NPM
+        working-directory: dist/ngx-translate-debug
+        run: npm publish
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - run: git push
+        env:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
